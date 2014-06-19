@@ -136,7 +136,11 @@ module WebStub
       when /application\/x-www-form-urlencoded/
         URI.decode_www_form(body)
       else
-        body
+        if hash = JSON.parse(body)
+          hash
+        else
+          body
+        end
       end
     end
 
